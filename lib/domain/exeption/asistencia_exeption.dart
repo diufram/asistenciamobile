@@ -1,0 +1,1 @@
+class AsistenciaException implements Exception {}

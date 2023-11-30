@@ -1,0 +1,1 @@
+class VehiculoException implements Exception {}

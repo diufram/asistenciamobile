@@ -1,0 +1,1 @@
+class TallerException implements Exception {}
