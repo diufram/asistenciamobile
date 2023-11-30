@@ -17,6 +17,8 @@ class AsistenciaTitle extends GetView<AsistenciaController> {
   }
 
   void pagar() async {
+    await controller.pagar(asistencia.id.toString());
+    Get.toNamed(AsistenciaRoutes.home);
     //controller.makePayment();
   }
 
@@ -122,6 +124,18 @@ class AsistenciaTitle extends GetView<AsistenciaController> {
                 height: 10,
               ),
               Text(asistencia.tecnicoId.toString()),
+              const SizedBox(
+                height: 10,
+              ),
+              asistencia.total != null
+                  ? Center(
+                      child: Image.asset(
+                        "lib/images/qr.jpeg",
+                        height: 150,
+                        width: 150,
+                      ),
+                    )
+                  : const SizedBox(),
               const SizedBox(
                 height: 10,
               ),

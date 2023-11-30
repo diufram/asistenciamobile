@@ -15,4 +15,5 @@ abstract class AsistenciaRepositoryInterface {
   Future<void> asignarTecnico(
       String tecnicoid, String asistenciaid, String token);
   Future<void> cobrar(String total, String asistenciaid, String token);
+  Future<void> pagar(String asistenciaid, String token);
 }

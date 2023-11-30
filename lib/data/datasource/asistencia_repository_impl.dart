@@ -143,4 +143,16 @@ class AsistenciaRepositoryImpl extends AsistenciaRepositoryInterface {
 
     await http.post(url, body: data, headers: header);
   }
+
+  @override
+  Future<void> pagar(String asistenciaid, String token) async {
+    Map<String, String> header = {
+      "Accept": "application/json",
+      "Authorization": "Bearer $token"
+    };
+    Map data = {"asistencia_id": asistenciaid};
+    var url = Uri.parse(baseURL + 'pagar');
+
+    await http.post(url, body: data, headers: header);
+  }
 }

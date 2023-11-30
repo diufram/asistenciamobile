@@ -211,6 +211,11 @@ class AsistenciaController extends GetxController {
         }));
   }
 
+  Future<void> pagar(String asistenciaid) async {
+    final token = await localRepositoryInterface.getToken();
+    await asistenciaRepositoryInterface.pagar(asistenciaid, token);
+  }
+
 /*
   //PAGOS
   void displayPayment() async {
