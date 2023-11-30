@@ -33,11 +33,13 @@ class AsistenciaTitleTaller extends GetView<AsistenciaController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.network(
-              "http://3.144.236.115${asistencia.url}",
-              height: 300,
-              width: 300,
-            ),
+            asistencia.url != "/storage/"
+                ? Image.network(
+                    "http://3.144.236.115${asistencia.url}",
+                    height: 300,
+                    width: 300,
+                  )
+                : const Text("LA IMAGEN NO SE PUDO CARGAR"),
             const SizedBox(
               height: 10,
             ),

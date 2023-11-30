@@ -1,5 +1,4 @@
 //import 'dart:convert';
-import 'dart:io';
 //import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:asistencia_vehicular/domain/models/servicioToTaller_model.dart';
 import 'package:asistencia_vehicular/domain/models/servicio_model.dart';
@@ -11,17 +10,21 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart';
 //import 'package:http/http.dart' as http;
-
-import 'package:pdf/widgets.dart' as pw;
 
 import '../../../domain/exeption/auth_exeption.dart';
 import '../../../domain/models/asistencia_model.dart';
 import '../../../domain/models/user_model.dart';
 import '../../../domain/repository/local_storage_repository.dart';
+import 'dart:io';
+
+import 'package:pdf/widgets.dart' as pw;
 
 class AsistenciaController extends GetxController {
   final LocalRepositoryInterface localRepositoryInterface;
@@ -258,4 +261,31 @@ class AsistenciaController extends GetxController {
     displayPayment();
   }
   */
+
+  final pdf = pw.Document();
+  File? file;
+  var ff = false.obs;
+
+  void writePDF() async {
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return pw.Center(
+              child:
+                  pw.Text("HOLAAA", style: pw.TextStyle(font: Font.courier())));
+        },
+      ),
+    );
+  }
+
+  Future<void> savePdf() async {
+    Directory documentDirectory = await getApplicationDocumentsDirectory();
+    String documentPath = documentDirectory.path;
+    File f = File("$documentPath/sample.pdf");
+    f.writeAsBytes(await pdf.save());
+    file = f;
+    ff.value = true;
+    update();
+  }
 }

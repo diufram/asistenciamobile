@@ -38,8 +38,8 @@ dependencies:
   flutter_map: ^6.0.1
   latlong2: ^0.9.0
   geolocator: ^10.1.0
-  pdf: ^3.10.6
-  path_provider: ^2.1.1
+  pdf: ^3.10.3
+  path_provider: ^2.0.15
   pdf_viewer_plugin: ^2.0.1
   
 
@@ -88,6 +88,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -5,6 +5,7 @@ import 'package:asistencia_vehicular/ui/screens/login/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+//import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 
 class AsistenciaTitle extends GetView<AsistenciaController> {
   AsistenciaTitle({super.key});
@@ -22,9 +23,13 @@ class AsistenciaTitle extends GetView<AsistenciaController> {
     //controller.makePayment();
   }
 
+  void pdf() async {
+    controller.writePDF();
+    await controller.savePdf();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2));
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -127,6 +132,21 @@ class AsistenciaTitle extends GetView<AsistenciaController> {
               const SizedBox(
                 height: 10,
               ),
+              Obx(() => controller.ff.value == true
+                  ? Text(controller
+                      .file!.path) //PdfView(path: controller.file!.path)
+                  : const Text(
+                      "PDF:",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+              asistencia.total != null
+                  ? MyButton(onTap: pdf, text: "PDF")
+                  : const SizedBox(
+                      height: 10,
+                    ),
               asistencia.total != null
                   ? Center(
                       child: Image.asset(
